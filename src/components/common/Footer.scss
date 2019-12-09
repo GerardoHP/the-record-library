@@ -1,0 +1,22 @@
+.footer {
+  background-color: #e9ecef;
+  position: absolute;
+  width: 100%;
+  max-height: 100px;
+  height: 100px;
+  ul {
+    list-style-type: none;
+    margin: 15px 0px;
+    li {
+      display: inline;
+      margin-right: 10px;
+      a {
+        font-weight: bolder;
+        color: saturation($color: #e9ecef);
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
