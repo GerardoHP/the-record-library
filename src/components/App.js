@@ -8,6 +8,8 @@ import Footer from "./common/Footer";
 import AlbumsPage from "./album/AlbumsPage";
 import "./App.scss";
 import ManageAlbumPage from "./album/ManageAlbumPage";
+import ManageArtistPage from "./artist/ManageArtistPage";
+import ArtistsPage from "./artist/ArtistsPage";
 
 function App() {
   return (
@@ -20,6 +22,9 @@ function App() {
           <Route path="/albums" component={AlbumsPage} />
           <Route path="/album/:id" component={ManageAlbumPage} />
           <Route path="/album/" component={ManageAlbumPage} />
+          <Route path="/artists" component={ArtistsPage} />
+          <Route path="/artist/:id" component={ManageArtistPage} />
+          <Route path="/artist/" component={ManageArtistPage} />
           <Route path="/NotFound" component={PageNotFound} />
           <Route component={PageNotFound} />
         </Switch>

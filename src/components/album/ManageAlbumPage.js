@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Prompt } from "react-router-dom";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import AlbumForm from "./AlbumForm";
 import * as albumActions from "../../redux/actions/albumActions";
 
@@ -19,7 +19,7 @@ const ManageAlbumPage = ({
 
   useEffect(() => {
     if (albums.length === 0) loadAlbums().catch(error => alert(error));
-    else setAlbum({...initialAlbum});
+    else setAlbum({ ...initialAlbum });
   }, [albums.length]);
 
   const handleChange = ({ target: { name, value } }) => {
@@ -46,11 +46,12 @@ const ManageAlbumPage = ({
   };
 
   function formIsInvalid() {
-    const { name, artistId } = album;
+    const { name, artistId, albumCover } = album;
     const errors = {};
-
+    
     if (!name) errors.name = "Name is required";
-    if (!artistId) errors.name = "Name is required";
+    if (!artistId) errors.artistId = "Artist is required";
+    if (!albumCover) errors.albumCover = "Image is required";
 
     setErrors(errors);
     return Object.keys(errors).length === 0;

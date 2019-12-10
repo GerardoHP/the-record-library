@@ -1,5 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
+import defaultImage from "../../no-image.png";
+import './ImageInput.scss';
 
 const ImageInput = ({
   name,
@@ -16,16 +18,9 @@ const ImageInput = ({
   }
 
   return (
-    //     <div class="input-group mb-3">
-    //   <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-    //   <div class="input-group-append">
-    //     <button class="btn btn-outline-secondary" type="button">Button</button>
-    //   </div>
-    // </div>
-
     <div className={wrapperClass}>
       <label htmlFor={name}>{label}</label>
-      <div className="input-group mb-3">
+      <div className="field">
         <input
           type="text"
           name={name}
@@ -35,16 +30,24 @@ const ImageInput = ({
           onChange={onChange}
           pattern={pattern}
         />
-        <div className="input-group-append">
+        {error && <div className="alert alert-danger">{error}</div>}
+        {
+          // TODO: add support for search the image online
+        }
+        {/* <div className="input-group-append">
           <button className="btn btn-outline-secondary" type="button">
             <i className="fa fa-search"></i>
           </button>
-        </div>
+        </div> */}
 
-        {error && <div className="alert alert-danger">{error}</div>}
+        
       </div>
 
-      <img src={value} alt="..." className="img-thumbnail" />
+      <img id="imageDisplay"
+        src={value ? value : defaultImage}
+        alt="..."
+        className="img-thumbnail"
+      />
     </div>
   );
 };

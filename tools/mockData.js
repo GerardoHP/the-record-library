@@ -1,23 +1,30 @@
 const albums = [
   {
     id: 1,
-    name: "White Album",
+    name: "Is This It",
     artistId: 1,
-    year: 1969,
-    albumCover: ""
+    year: 2001,
+    albumCover: "https://images-na.ssl-images-amazon.com/images/I/81lKgbwEi%2BL._SL1417_.jpg"
   },
   {
     id: 2,
-    name: "Help",
-    artistId: 1,
-    year: 1970,
-    albumCover: ""
+    name: "Elephant",
+    artistId: 2,
+    year: 2003,
+    albumCover: "https://images-na.ssl-images-amazon.com/images/I/71e1DBAzgpL._SL1425_.jpg"
   },
   {
     id: 3,
-    name: "Aftermath",
-    artistId: 2,
-    year: 1966,
+    name: "Aha Shake Heartbreak",
+    artistId: 3,
+    year: 2004,
+    albumCover: "https://images-na.ssl-images-amazon.com/images/I/41erswE6W-L.jpg"
+  },
+  {
+    id: 4,
+    name: "Youth and Young Manhood",
+    artistId: 3,
+    year: 2003,
     albumCover: ""
   }
 ];
@@ -25,11 +32,23 @@ const albums = [
 const artists = [
   {
     id: 1,
-    name: "The Beatles"
+    name: "The Strokes"
   },
   {
     id: 2,
-    name: "The Rolling Stones"
+    name: "The White Stripes"
+  },
+  {
+    id: 3,
+    name: "Kings Of Leon"
+  },
+  {
+    id: 4,
+    name: "The Kills"
+  },
+  {
+    id: 5,
+    name: "The Dead Weather"
   }
 ];
 

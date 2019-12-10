@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const SelectInput = ({
   name,
@@ -8,7 +9,9 @@ const SelectInput = ({
   defaultOption,
   value,
   error,
-  options
+  options,
+  disabled,
+  newRedirect
 }) => {
   return (
     <div className="form-group">
@@ -20,6 +23,7 @@ const SelectInput = ({
           value={value}
           onChange={onChange}
           className="form-control"
+          disabled={disabled}
         >
           <option value="">{defaultOption}</option>
           {options.map(option => {
@@ -30,6 +34,7 @@ const SelectInput = ({
             );
           })}
         </select>
+        {newRedirect && <Link to={newRedirect} >Add new</Link>}
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
@@ -43,7 +48,9 @@ SelectInput.propTypes = {
   defaultOption: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.string,
-  options: PropTypes.arrayOf(PropTypes.object)
+  options: PropTypes.arrayOf(PropTypes.object),
+  disabled: PropTypes.bool,
+  newRedirect: PropTypes.string
 };
 
 export default SelectInput;

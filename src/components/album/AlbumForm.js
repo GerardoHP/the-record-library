@@ -1,25 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TextInput from "../common/TextInput";
 import SelectInput from "../common/SelectInput";
 import ImageInput from "../common/ImageInput";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as artistActions from "../../redux/actions/artistActions";
+import PropTypes from "prop-types";
 
 const AlbumForm = ({
   album,
   onSave,
   onChange,
   saving = false,
-  errors = {}
+  errors = {},
+  artists,
+  loadArtists
 }) => {
-  const artists = [
-    {
-      id: 1,
-      name: "The Beatles"
-    },
-    {
-      id: 2,
-      name: "The Rolling Stones"
-    }
-  ];
+  useEffect(() => {
+    if (artists.length === 0) loadArtists().catch(error => alert(error));
+  });
 
   return (
     <form onSubmit={onSave}>
@@ -38,7 +37,9 @@ const AlbumForm = ({
         value={album.artistId}
         options={artists.map(a => ({ text: a.name, value: a.id }))}
         onChange={onChange}
-        error={errors.artist}
+        error={errors.artistId}
+        disabled={artists.length === 0}
+        newRedirect="/artist"
       />
       <ImageInput
         name="albumCover"
@@ -65,4 +66,26 @@ const AlbumForm = ({
   );
 };
 
-export default AlbumForm;
+AlbumForm.propTypes = {
+  album: PropTypes.any.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  saving: PropTypes.bool.isRequired,
+  errors: PropTypes.any.isRequired,
+  artists: PropTypes.array.isRequired,
+  loadArtists: PropTypes.func.isRequired
+};
+
+const mapStoreToProps = ({ artists }) => {
+  return {
+    artists
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadArtists: bindActionCreators(artistActions.loadArtists, dispatch)
+  };
+};
+
+export default connect(mapStoreToProps, mapDispatchToProps)(AlbumForm);

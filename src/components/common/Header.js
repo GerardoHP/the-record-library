@@ -7,7 +7,8 @@ const Header = () => {
   const links = [
     { to: "/", exact: true, text: "Home" },
     { to: "/about", exact: false, text: "About" },
-    { to: "/albums", exact: false, text: "Albums" }
+    { to: "/albums", exact: false, text: "Albums" },
+    { to: "/artists", exact: false, text: "Artists" },
   ];
 
   return <NavList links={links} />;
