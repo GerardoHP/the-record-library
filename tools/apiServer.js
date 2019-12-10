@@ -44,8 +44,8 @@ server.use((req, res, next) => {
   next();
 });
 
-server.post("/courses/", function (req, res, next) {
-  const error = validateCourse(req.body);
+server.post("/albums/", function (req, res, next) {
+  const error = validateAlbum(req.body);
   if (error) {
     res.status(400).send(error);
   } else {
@@ -65,17 +65,9 @@ server.listen(port, () => {
 
 // Centralized logic
 
-// Returns a URL friendly slug
-function createSlug(value) {
-  return value
-    .replace(/[^a-z0-9_]+/gi, "-")
-    .replace(/^-|-$/g, "")
-    .toLowerCase();
-}
 
-function validateCourse(course) {
-  if (!course.title) return "Title is required.";
-  if (!course.authorId) return "Author is required.";
-  if (!course.category) return "Category is required.";
+function validateAlbum(album) {
+  if (!album.name) return "Title is required.";
+  if (!album.artistId) return "Artist is required.";
   return "";
 }
