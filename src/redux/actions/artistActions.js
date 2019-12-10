@@ -1,36 +1,36 @@
 import * as types from "./actionTypes";
-import * as albumApi from "../../api/artistApi";
+import * as artistApi from "../../api/artistApi";
 import { apiCallError, beginApiCall } from "./apiStatusActions";
 
 export function loadArtists() {
   return function(dispatch) {
     dispatch(beginApiCall);
-    return albumApi
+    return artistApi
       .getArtists()
       .then(artists => dispatch(loadArtistsSuccess(artists)))
-      .then(() => dispatch(apiCallError()));
+      .catch(() => dispatch(apiCallError()));
   };
 }
 
 export function saveArtists(artist) {
   return function(dispatch) {
     dispatch(beginApiCall());
-    return albumApi
+    return artistApi
       .saveArtist(artist)
       .then(savedArtist =>
         artist.id
-          ? dispatch(updateArtitSuccess(artist))
-          : dispatch(saveArtistSuccess(artist))
+          ? dispatch(updateArtitSuccess(savedArtist))
+          : dispatch(saveArtistSuccess(savedArtist))
       )
       .catch(() => dispatch(apiCallError()));
   };
 }
 
-export function deleteArtistOptimistic(artistId) {
+export function deleteArtist(artistId) {
   return function(dispatch) {
     dispatch(beginApiCall());
-    dispatch(deleteArtistOptimistic(deleteId));
-    return albumApi
+    dispatch(deleteArtistOptimistic(artistId));
+    return artistApi
       .deleteArtist(artistId)
       .catch(() => dispatch(apiCallError()));
   };
@@ -45,9 +45,9 @@ export function updateArtitSuccess(artist) {
 }
 
 export function saveArtistSuccess(artist) {
-  return { type: types.SAVE_ARTIST_SUCCESS, artists: artist };
+  return { type: types.SAVE_ARTIST_SUCCESS, artist };
 }
 
 export function deleteArtistOptimistic(artistId) {
-  return { type: types.DELETE_ARTIST_OPTIMISTIC, artists: artistId };
+  return { type: types.DELETE_ARTIST_OPTIMISTIC, artistId };
 }

@@ -7,10 +7,10 @@ export function loadAlbums() {
     dispatch(beginApiCall());
     return albumApi
       .getAlbums()
-      .then(authors => {
-        dispatch(loadAlbumsSuccess(authors));
+      .then(albums => {
+        dispatch(loadAlbumsSuccess(albums));
       })
-      .catch(error => {
+      .catch(() => {
         dispatch(apiCallError());
       });
   };
@@ -19,10 +19,10 @@ export function loadAlbums() {
 export function saveAlbums(album) {
   return function(dispatch) {
     dispatch(beginApiCall());
-    return albumApi.saveAlbum(album).then(savedAuthor => {
+    return albumApi.saveAlbum(album).then(savedAlbum => {
       album.id
-        ? dispatch(updateAlbumSuccess(savedAuthor))
-        : dispatch(saveAlbumSuccess(savedAuthor));
+        ? dispatch(updateAlbumSuccess(savedAlbum))
+        : dispatch(saveAlbumSuccess(savedAlbum));
     });
   };
 }
@@ -30,13 +30,13 @@ export function saveAlbums(album) {
 export function deleteAlbum(albumId) {
   return function(dispatch) {
     dispatch(beginApiCall());
-    dispatch(deleteAlbum(albumId)); // Optimistacally erase the record before calling the method.
+    dispatch(deleteAlbumOptimistic(albumId)); // Optimistacally erase the record before calling the method.
     return albumApi.deleteAlbum(albumId).catch(() => dispatch(apiCallError()));
   };
 }
 
-export function loadAlbumsSuccess(authors) {
-  return { type: types.LOAD_ALBUMS_SUCCESS, authors };
+export function loadAlbumsSuccess(albums) {
+  return { type: types.LOAD_ALBUMS_SUCCESS, albums };
 }
 
 export function updateAlbumSuccess(album) {
@@ -47,6 +47,6 @@ export function saveAlbumSuccess(album) {
   return { type: types.SAVE_ALBUM_SUCCESS, album };
 }
 
-export function saveAlbumSuccess(albumId) {
+export function deleteAlbumOptimistic(albumId) {
   return { type: types.DELETE_ALBUM_OPTIMISTIC, albumId };
 }

@@ -1,60 +1,30 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import PropTypes from "prop-types";
+import * as albumActions from "../../redux/actions/albumActions";
+import * as artistActions from "../../redux/actions/artistActions";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
 import AlbumsList from "./AlbumList";
 
-const AlbumsPage = () => {
-  const initialAlbums = [
-    {
-      id: 1,
-      name: "White Album",
-      artistId: 1,
-      year: 1969,
-      albumCover: ""
-    },
-    {
-      id: 2,
-      name: "Help",
-      artistId: 1,
-      year: 1970,
-      albumCover: ""
-    },
-    {
-      id: 3,
-      name: "Aftermath",
-      artistId: 2,
-      year: 1966,
-      albumCover: ""
+const AlbumsPage = ({
+  albums,
+  loading,
+  loadAlbums,
+  deleteAlbum,
+  loadArtists
+}) => {
+  useEffect(() => {
+    if (albums.length === 0) {
+      loadAlbums().catch(error => alert(error));
+      loadArtists().catch(error => alert(error));
     }
-  ];
-
-  const artists = [
-    {
-      id: 1,
-      name: "The Beatles"
-    },
-    {
-      id: 2,
-      name: "The Rolling Stones"
-    }
-  ];
-
-  const [loading, setLoading] = useState(true);
-  const [albums, setAlbums] = useState(initialAlbums);
+  });
 
   const handleDelte = id => {
-    alert(id);
+    deleteAlbum(id);
   };
-
-  useEffect(() => {
-    setAlbums(
-      initialAlbums.map(album => {
-        album.artist = artists.find(artist => artist.id === album.artistId);
-        return album;
-      })
-    );
-    setLoading(false);
-  });
 
   return (
     <>
@@ -73,4 +43,29 @@ const AlbumsPage = () => {
   );
 };
 
-export default AlbumsPage;
+AlbumsPage.propTypes = {
+  albums: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired,
+  loadAlbums: PropTypes.func.isRequired,
+  deleteAlbum: PropTypes.func.isRequired,
+  loadArtists: PropTypes.func.isRequired
+};
+
+const mapStateToProps = ({ artists, albums, apiCallInProgress }) => {
+  return {
+    albums: albums.map(album => {
+      album.artist = artists.find(artist => artist.id === album.artistId);
+      return album;
+    }),
+    loading: apiCallInProgress > 0
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    loadAlbums: bindActionCreators(albumActions.loadAlbums, dispatch),
+    deleteAlbum: bindActionCreators(albumActions.deleteAlbum, dispatch),
+    loadArtists: bindActionCreators(artistActions.loadArtists, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumsPage);

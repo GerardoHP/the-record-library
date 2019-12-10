@@ -19,6 +19,7 @@ function App() {
           <Route path="/about" component={AboutPage} />
           <Route path="/albums" component={AlbumsPage} />
           <Route path="/album/:id" component={ManageAlbumPage} />
+          <Route path="/album/" component={ManageAlbumPage} />
           <Route path="/NotFound" component={PageNotFound} />
           <Route component={PageNotFound} />
         </Switch>

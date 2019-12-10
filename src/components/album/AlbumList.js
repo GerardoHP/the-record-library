@@ -18,7 +18,7 @@ const AlbumsList = ({ albums, onDelete }) => (
             <td>
               <Link to={`/album/${a.id}`}>{a.name}</Link>{" "}
             </td>
-            <td>{a.artist.name}</td>
+            <td>{a.artist ? a.artist.name : "Loading ..."}</td>
             <td>
               <button
                 className="btn btn-outline-danger"
