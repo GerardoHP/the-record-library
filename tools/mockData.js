@@ -1,98 +1,55 @@
-const courses = [
+const albums = [
   {
     id: 1,
-    title: "Securing React Apps with Auth0",
-    slug: "react-auth0-authentication-security",
-    authorId: 1,
-    category: "JavaScript"
+    name: "White Album",
+    artistId: 1,
+    year: 1969,
+    albumCover: ""
   },
   {
     id: 2,
-    title: "React: The Big Picture",
-    slug: "react-big-picture",
-    authorId: 1,
-    category: "JavaScript"
+    name: "Help",
+    artistId: 1,
+    year: 1970,
+    albumCover: ""
   },
   {
     id: 3,
-    title: "Creating Reusable React Components",
-    slug: "react-creating-reusable-components",
-    authorId: 1,
-    category: "JavaScript"
-  },
-  {
-    id: 4,
-    title: "Building a JavaScript Development Environment",
-    slug: "javascript-development-environment",
-    authorId: 1,
-    category: "JavaScript"
-  },
-  {
-    id: 5,
-    title: "Building Applications with React and Redux",
-    slug: "react-redux-react-router-es6",
-    authorId: 1,
-    category: "JavaScript"
-  },
-  {
-    id: 6,
-    title: "Building Applications in React and Flux",
-    slug: "react-flux-building-applications",
-    authorId: 1,
-    category: "JavaScript"
-  },
-  {
-    id: 7,
-    title: "Clean Code: Writing Code for Humans",
-    slug: "writing-clean-code-humans",
-    authorId: 1,
-    category: "Software Practices"
-  },
-  {
-    id: 8,
-    title: "Architecting Applications for the Real World",
-    slug: "architecting-applications-dotnet",
-    authorId: 1,
-    category: "Software Architecture"
-  },
-  {
-    id: 9,
-    title: "Becoming an Outlier: Reprogramming the Developer Mind",
-    slug: "career-reboot-for-developer-mind",
-    authorId: 1,
-    category: "Career"
-  },
-  {
-    id: 10,
-    title: "Web Component Fundamentals",
-    slug: "web-components-shadow-dom",
-    authorId: 1,
-    category: "HTML5"
+    name: "Aftermath",
+    artistId: 2,
+    year: 1966,
+    albumCover: ""
   }
 ];
 
-const authors = [
-  { id: 1, name: "Cory House" },
-  { id: 2, name: "Scott Allen" },
-  { id: 3, name: "Dan Wahlin" }
+const artists = [
+  {
+    id: 1,
+    name: "The Beatles"
+  },
+  {
+    id: 2,
+    name: "The Rolling Stones"
+  }
 ];
 
-const newCourse = {
+const newAlbum = {
+  albumCover: "",
   id: null,
-  title: "",
-  authorId: null,
-  category: ""
+  name: "",
+  artistId: null,
+  year: null
 };
 
-const newAuthor = {
+const newArtist = {
   id: null,
   name: ""
 };
 
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
-  newCourse,
-  courses,
-  authors,
-  newAuthor
+  newAlbum,
+  albums,
+  artists,
+  newArtist
 };

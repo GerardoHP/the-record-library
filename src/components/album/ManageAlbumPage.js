@@ -29,10 +29,11 @@ const ManageAlbumPage = ({
   };
 
   function formIsInvalid() {
-    const { name } = album;
+    const { name, artistId } = album;
     const errors = {};
 
     if (!name) errors.name = "Name is required";
+    if (!artistId) errors.name = "Name is required";
 
     setErrors(errors);
     return Object.keys(errors).length === 0;

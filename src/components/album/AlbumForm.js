@@ -1,5 +1,6 @@
 import React from "react";
 import TextInput from "../common/TextInput";
+import SelectInput from "../common/SelectInput";
 import ImageInput from "../common/ImageInput";
 
 const AlbumForm = ({
@@ -9,6 +10,17 @@ const AlbumForm = ({
   saving = false,
   errors = {}
 }) => {
+  const artists = [
+    {
+      id: 1,
+      name: "The Beatles"
+    },
+    {
+      id: 2,
+      name: "The Rolling Stones"
+    }
+  ];
+
   return (
     <form onSubmit={onSave}>
       <h2>Album</h2>
@@ -19,6 +31,14 @@ const AlbumForm = ({
         onChange={onChange}
         error={errors.name}
         pattern="[A-Za-z\s]*"
+      />
+      <SelectInput
+        name="artistId"
+        label="Artist"
+        value={album.artistId}
+        options={artists.map(a => ({ text: a.name, value: a.id }))}
+        onChange={onChange}
+        error={errors.artist}
       />
       <ImageInput
         name="albumCover"
