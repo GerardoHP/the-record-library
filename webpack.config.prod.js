@@ -50,23 +50,8 @@ module.exports = {
         use: ["babel-loader", "eslint-loader"]
       },
       {
-        test: /(\.css)$/,
-        use: [
-          MiniCSSExtractPlugin.loader,
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              plugins: () => [require("cssnano")],
-              sourceMap: true
-            }
-          }
-        ]
+        test: /\.(s*)css$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   }
