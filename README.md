@@ -1,12 +1,14 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). Later was modified to customize the webpack to add SASS support and some other fun stuff.
 
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `Published online`
 
 The app is published on [azure](https://the-record-library.azurewebsites.net/), Currently it is unavaibale cause some errors opn the platform, I'll keep updated this entry.
+
+
+## Available Scripts
+
+In the project directory, you can run:
 
 ### `npm start`
 
